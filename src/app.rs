@@ -20,6 +20,7 @@ pub fn App() -> impl IntoView {
             <main>
                 <Routes>
                     <Route path="" view=HomePage/>
+                    <Route path="/poll" view=Poll/>
                     <Route path="/*any" view=NotFound/>
                 </Routes>
             </main>
@@ -35,8 +36,10 @@ fn HomePage() -> impl IntoView {
     let on_click = move |_| set_count.update(|count| *count += 1);
 
     view! {
-        <h1>"Welcome to Leptos!"</h1>
+        <h1>"Sample poll"</h1>
         <button on:click=on_click>"Click Me: " {count}</button>
+        <a href="/poll">"Röstning pågår!"</a>
+        <h1>"TAGGA DORK"</h1>
     }
 }
 
@@ -59,5 +62,23 @@ fn NotFound() -> impl IntoView {
 
     view! {
         <h1>"Not Found"</h1>
+    }
+}
+
+#[component]
+fn Poll() -> impl IntoView {
+    return view! {
+        <h1>"Hello this is me!"</h1>
+        <img src="https://avatars.githubusercontent.com/u/32063345" />
+
+        <form  method="post">
+            <label for="inp">"Skicka något till databasen!"</label><br/>
+            <input type="text" id="inp" name="inp" /><br/><br/><br/>
+
+            <input type="checkbox" id="box" name="box" value="tagga" />
+            <label for="box"> "TAGGA DORK"</label><br/>
+
+            <input type="submit" value="Submit" />
+        </form>
     }
 }
